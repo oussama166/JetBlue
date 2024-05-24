@@ -1,0 +1,196 @@
+<nav
+  class="sticky top-0 w-full h-20 px-52 bg-blue-950 text-white flex flex-row justify-between items-center gap-5 font-Lexend font-light overflow-hidden z-20"
+>
+  <!--  Right section-->
+  <div class="inline-flex items-center gap-10">
+    <!--  logo of website -->
+    <img
+      ngSrc="/assets/images/jetBlue.svg"
+      class="w-36"
+      alt="Logo website"
+      height="14"
+      width="44"
+    />
+    <div class="inline-flex gap-10 text-xl h-full">
+      <h1
+        class="flex items-center buttonNav"
+        (click)="clicker($event, 0)"
+        aria-active="false"
+        id="items"
+      >
+        Book
+        <span class="w-10 h-1 block"></span>
+      </h1>
+      <h1 class="buttonNav">Manage Tips</h1>
+      <h1 class="buttonNav flex items-center" aria-active="false">Check In</h1>
+      <h1 class="buttonNav flex items-center" aria-active="false">
+        Travel Info
+      </h1>
+    </div>
+  </div>
+  <!--Left section -->
+  <div class="inline-flex gap-5">
+    <span
+      class="relative inline-flex items-center gap-2 text-xl buttonNav"
+      aria-active="false"
+      id="items"
+      (click)="clicker($event, 1)"
+    >
+      <img
+        src="/assets/images/user_circle.svg"
+        alt="userCercle"
+        class="fill-white"
+        height="31"
+        width="31"
+      />
+      TrueBlue
+    </span>
+    <span
+      pBadge
+      [value]="cartCounter"
+      [badgeDisabled]="cartCounter === 0"
+      severity="danger"
+      class="inline-flex items-center gap-2 text-xl"
+      (click)="addToCart()"
+    >
+      <img
+        src="assets/images/user_cart.svg"
+        alt="userCercle"
+        class="fill-white"
+        height="31"
+        width="31"
+      />
+    </span>
+  </div>
+</nav>
+<!-- Drop down 1 -->
+<div
+  class="absolute flex justify-center items-center left-0 max-w-[100vw] w-full min-h-[50vh] bg-[#f6f6f6] z-10"
+  aria-label="false"
+  aria-expanded="false"
+  #dropdown1
+>
+  <div class="flex flex-row gap-10">
+    <div class="w-3/4 flex flex-row gap-28">
+      <div
+        class="flex flex-col gap-2 items-center cursor-pointer hover:underline hover:text-blue-800 hover:transition-all hover:ease-out max-w-[150px] text-center"
+      >
+        <img src="assets/images/jet.svg" alt="flights" width="150" />
+        <h1 class="text-blue-800 text-2xl font-Lexend font-medium">Flights</h1>
+      </div>
+      <div
+        class="flex flex-col gap-2 items-center cursor-pointer hover:underline hover:text-blue-800 hover:transition-all hover:ease-out max-w-[150px] text-center"
+      >
+        <img src="assets/images/packagesApp.svg" alt="flights" width="150" />
+        <h1 class="text-blue-800 text-2xl font-Lexend font-medium">Packages</h1>
+      </div>
+      <div
+        class="flex flex-col gap-2 items-center cursor-pointer hover:underline hover:text-blue-800 hover:transition-all hover:ease-out max-w-[150px] text-center"
+      >
+        <img src="assets/images/CarsRant.svg" alt="flights" width="150" />
+        <h1 class="text-blue-800 text-2xl font-Lexend font-medium text-wrap">
+          Cars,Stays &amp; activities
+        </h1>
+      </div>
+    </div>
+    <div class="flex flex-row gap-10">
+      <mat-divider
+        [vertical]="true"
+        class="icon bg-gray-400/40 w-1 h-full"
+      ></mat-divider>
+      <div class="w-full flex flex-col justify-center items-start gap-10">
+        <div
+          class="w-full flex flex-row items-center gap-x-5 group cursor-pointer"
+        >
+          <img
+            src="assets/images/plane.svg"
+            alt="plane"
+            width="60"
+            class="fill-blue-800"
+          />
+          <h1
+            class="text-blue-800 text-2xl font-semibold text-nowrap group-hover:underline"
+          >
+            Best Fare Finder
+          </h1>
+        </div>
+        <div
+          class="w-full flex flex-row items-center gap-x-5 group cursor-pointer"
+        >
+          <img
+            src="assets/images/paper.svg"
+            alt="plane"
+            class="fill-blue-800"
+          />
+          <h1
+            class="text-blue-800 text-2xl font-semibold text-nowrap group-hover:underline"
+          >
+            Best Vacation Finder
+          </h1>
+        </div>
+        <div
+          class="w-full flex flex-row gap-x-5 items-center group cursor-pointer"
+        >
+          <img
+            src="assets/images/world.svg"
+            alt="plane"
+            width="60"
+            class="fill-blue-800"
+          />
+          <h1
+            class="text-blue-800 text-2xl font-semibold group-hover:underline"
+          >
+            Route Map
+          </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Drop down 2 -->
+<div
+  class="absolute flex flex-col items-center grow right-60 max-w-[500px] w-full min-h-[30vh] bg-[#f6f6f6] rounded-md divide-y-2 p-5 z-10"
+  aria-expanded="false"
+  #dropdown2
+>
+  <!-- Conditional rendering based on currentUser -->
+  <ng-container *ngIf="currentUser; else signInTemplate">
+    <div class="flex items-center">
+      <h1>Hello , {{currentUser.name}} {{currentUser.lastName}}</h1>
+      <button
+        class="w-full bg-jetBlue-200 text-white font-Lexend font-medium text-2xl px-8 py-5 rounded-lg hover:bg-blue-800 hover:transition-all hover:ease-out"
+        (click)="LogOut()"
+      >
+        Logout
+      </button>
+    </div>
+  </ng-container>
+  <ng-template #signInTemplate>
+    <a href="/enroll/signIn" class="w-full">
+      <button
+        class="w-full bg-jetBlue-200 text-white font-Lexend font-medium text-2xl px-8 py-5 rounded-lg hover:bg-blue-800 hover:transition-all hover:ease-out"
+      >
+        Sign In
+      </button>
+    </a>
+    <div class="w-full flex flex-col gap-6 justify-center p-5 my-4">
+      <h1 class="text-3xl font-Lexend font-medium text-jetBlue-200">
+        Join TrueBlue. Get reward.
+      </h1>
+      <ul
+        class="list-square flex flex-col ml-10 text-2xl font-JBKlarheit leading-relaxed gap-2 text-gray-800"
+      >
+        <li class="">Earn & redeem award travel fast</li>
+        <li class="">Get reward for travel & everday purchases</li>
+        <li class="">Travel your way with Perks you Pick</li>
+      </ul>
+      <a href="/enroll/join_us">
+        <button
+          class="w-full bg-transparent text-jetBlue-200 border-2 border-black/30 font-Lexend font-medium text-2xl px-10 py-5 rounded-xl my-5 hover:bg-gray-400/5 hover:text-jetBlue-600 hover:transition-all hover:ease-out"
+        >
+          Join Now
+        </button>
+      </a>
+    </div>
+  </ng-template>
+</div>

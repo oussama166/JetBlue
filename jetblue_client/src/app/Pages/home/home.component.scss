@@ -1,0 +1,77 @@
+/* =========================== Bottom line Selectore style ,transition and animation =========================== */
+.buttonNav {
+  position: relative;
+  margin: 0 !important;
+  cursor: pointer;
+}
+
+/* Left side */
+.buttonNav::before {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 0;
+  height: 10px;
+  background: orange left top;
+  transition: width 0.5s ease;
+}
+
+.buttonNav:hover::before,
+#items[aria-active="true"]::before {
+  animation: grow 0.5s forwards;
+}
+
+/* Reverse animation */
+.buttonNav:not(:hover)::before {
+  animation: shrink 0.5s forwards;
+}
+
+/* Right side */
+.buttonNav::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  right: 50%;
+  width: 0;
+  height: 10px;
+  background: orange right top;
+  transition: width 0.5s ease; /* Added transition */
+}
+
+.buttonNav:hover::after,
+#items[aria-active="true"]::after {
+  animation: grow 0.5s forwards;
+}
+
+/* Reverse animation */
+.buttonNav:not(:hover)::after {
+  animation: shrink 0.5s forwards; /* Apply the shrink animation */
+}
+
+@keyframes grow {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 50%;
+  }
+}
+
+@keyframes shrink {
+  0% {
+    width: 50%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+
+/* Reset the style of .mat-icon */
+.icon {
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+  font-weight: bold !important;
+  color: white;
+}
+

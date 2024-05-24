@@ -1,0 +1,56 @@
+<!-- This component is dedicated just for sign in -->
+<!--Data contain -->
+<!--Email-->
+<!--Password-->
+<div class="w-full h-full">
+  <div class="min-w-full w-full h-20 p-6 bg-jetBlue-600">
+    <a href="/">
+      <img src="assets/images/jetBlue.svg" width="100" height="100" alt="Logo of application" />
+    </a>
+  </div>
+  <div class="bg-signIn bg-contain w-full h-full flex flex-col items-center justify-center">
+    <div class="w-[30vw] bg-white rounded-lg flex flex-col p-10">
+      <h1 class="text-4xl mx-5 my-2 text-jetBlue-400 font-JBKlarheit  uppercase">
+        Jet<strong>Blue</strong>
+      </h1>
+      <h1 class="text-3xl mx-5 my-2 text-jetBlue-500 font-JBKlarheit  uppercase">
+        Sign In
+      </h1>
+      <form class="m-5 flex flex-col gap-y-5">
+        <div class="flex flex-col gap-2" #email>
+          <label for="email" class="text-xl font-normal">Email</label>
+          <input id="email" aria-describedby="email-help" type="email"
+            class="p-3 border border-black/50 rounded-md text-xl" (keyup)="insertDataEmail($event)" />
+          <small id="email-help" class="hidden">Enter your email account</small>
+        </div>
+        <div class="flex flex-col gap-2" #password>
+          <label for="password" class="text-xl font-normal">Password</label>
+          <input pInputText id="password" aria-describedby="password-help" type="password"
+            class="p-3 border border-black/50 rounded-md text-xl" (keyup)="insertDataPassword($event)" />
+          <small id="password-help" class="hidden">Enter your email account</small>
+        </div>
+        <span
+          class="bg-jetBlue-500 py-5 text-white text-xl font-JBKlarheit font-normal text-center rounded-lg cursor-pointer"
+          (click)="showResult()">
+          Sign In
+        </span>
+        <span class="text-xl text-center text-jetBlue-500/80 cursor-pointer hover:underline">
+          Forgot password?
+        </span>
+        <div class="w-full">
+          <hr class="w-full border-black/50 rounded-md my-5" />
+        </div>
+        <div class="flex flex-col items-center gap-3">
+          <h1 class="text-base font-normal font-JBKlarheit">Not a member yet?</h1>
+          <a href="/enroll/join_us">
+            <span
+              class="text-jetBlue-400 font-JBKlarheit font-semibold cursor-pointer hover:underline hover:underline-offset-1">
+              Join now
+              <mat-icon svgIcon="triangle" class="rotate-90 w-2 h-2 text-white color-white"></mat-icon>
+            </span>
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

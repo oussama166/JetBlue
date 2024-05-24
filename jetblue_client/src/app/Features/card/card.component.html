@@ -1,0 +1,40 @@
+<div
+  class="h-72 w-72 max-w-72 max-h-72 p-5 border-jet rounded-lg border-2 relative overflow-hidden cursor-pointer"
+  [ngClass]="{
+      'border-jetBlue-200' : State == 'enable' && TypePass == 'Basic',
+      'border-jetBlue-400' : State == 'enable' && TypePass == 'Blue',
+      'border-jetBlue-600' : State == 'enable' && TypePass == 'Blue Extra',
+      'border-jetBlue-mint' : State == 'enable' && TypePass == 'Mint',
+      'border-[#d3d3d3]' : State == 'disable'
+    }"
+>
+  <!-- Head  -->
+  <h1
+    class="block text-jetBlue-400 font-Lexend text-2xl font-semibold leading-relaxed tracking-wide"
+  >
+    {{ TypePass }}
+  </h1>
+  <div class="text-base font-Lexend leading-relaxed capitalize">
+    <!-- Content -->
+    <p>Free carry-no bag and advenced</p>
+    <p>seat selection : NO</p>
+    <p>Change/cancel fees.</p>
+  </div>
+  <div
+    class="absolute top-[calc(100%-4rem)] left-0 w-72  h-16 text-3xl text-right font-Lexend text-white flex items-center justify-end px-5"
+    [ngClass]="{
+      'bg-jetBlue-200' : State == 'enable' && TypePass == 'Basic',
+      'bg-jetBlue-500' : State == 'enable' && TypePass == 'Blue',
+      'bg-jetBlue-600' : State == 'enable' && TypePass == 'Blue Extra',
+      'bg-jetBlue-mint' : State == 'enable' && TypePass == 'Mint',
+      'bg-[#d3d3d3]' : State == 'disable'
+    }"
+  >
+    <ng-template [ngIf]="this.State == 'disable'">
+      {{ this.Price }}
+    </ng-template>
+    <ng-template [ngIf]="this.State == 'enable'">
+      <sup>$</sup>{{ this.Price }}
+    </ng-template>
+  </div>
+</div>

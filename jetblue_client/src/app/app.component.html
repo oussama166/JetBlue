@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.5" />
+    <title>{{ title }}</title>
+  </head>
+  <body>
+    <app-navbar *ngIf="!isSignInRoute"></app-navbar>
+    <router-outlet />
+    <app-footer *ngIf="!isSignInRoute"></app-footer>
+  </body>
+</html>

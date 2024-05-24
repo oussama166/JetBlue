@@ -1,0 +1,122 @@
+<form
+  [formGroup]="personal"
+  class="{{ !show ? 'hidden' : 'flex' }} flex-col divide-y-2"
+>
+  <!-- Gender  -->
+  <div class="w-full flex flex-row gap-x-10 pb-20">
+    <!-- Title -->
+    <div class="space-y-7">
+      <h1
+        class="max-w-sm w-full text-4xl text-jetBlue-600 font-Lexend font-bold text-wrap tracking-normal"
+      >
+        What your gender?
+      </h1>
+      <p
+        class="text-xl text-jetblueText-500 font-JBKlarheit tracking-wide w-96"
+      >
+        What’s the gender indicated on your government-issued ID? (optional).
+      </p>
+    </div>
+    <!-- Inputs -->
+    <div>
+      <div class="w-96">
+        <div class="flex flex-col gap-5">
+          <div class="flex flex-col gap-2">
+            <app-input
+              Label="Gender"
+              [Type]="'Gender'"
+              [ErrorMessage]="'Please enter choose your gender'"
+              [FormControlName]="'gender'"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Adress info -->
+  <div class="w-full flex flex-row gap-x-10 py-20">
+    <!-- Title -->
+    <div class="space-y-7">
+      <h1
+        class="max-w-sm w-full text-4xl text-jetBlue-600 font-Lexend font-bold text-wrap tracking-normal"
+      >
+        What’s your address?
+      </h1>
+      <p
+        class="text-xl text-jetblueText-500 font-JBKlarheit tracking-wide w-96"
+      >
+        Your address speeds up booking and helps us personalize offers for you.
+      </p>
+    </div>
+    <!-- Inputs -->
+    <div>
+      <div class="w-96">
+        <div class="flex flex-col gap-5">
+          <div class="flex flex-col gap-2">
+            <app-input
+              Label="Adresse Line 1"
+              [Type]="'text'"
+              [ErrorMessage]="'Please enter your Adresse'"
+              [FormControlName]="'addresse'"
+            />
+          </div>
+          <div class="flex flex-col gap-2">
+            <app-input
+              Label="Adresse Line 2"
+              [Type]="'text'"
+              [ErrorMessage]="'Please enter your Adresse'"
+              [FormControlName]="'addresse2'"
+              [IsOptional]="true"
+            />
+          </div>
+          <div class="flex flex-col gap-2">
+            <app-input
+              Label="Country"
+              [Type]="'Country'"
+              [ErrorMessage]="'Please enter choice your country'"
+              [FormControlName]="'country'"
+            />
+          </div>
+
+          @if (this.personal.get('country')?.value != '') {
+          <div class="inline-flex gap-2">
+            <app-input
+              Label="State"
+              [Type]="'State'"
+              [ErrorMessage]="'Please enter your State'"
+              [FormControlName]="'state'"
+              [STATE_COUNTRY]="this.personal.get('country')?.value"
+            />
+            <app-input
+              Label="Zip Code"
+              [Type]="'text'"
+              [ErrorMessage]="'Please enter your zip code'"
+              [FormControlName]="'zip'"
+            />
+          </div>
+          }
+          <div class="flex flex-col gap-2">
+            <app-input
+              Label="City"
+              [Type]="'text'"
+              [ErrorMessage]="'Please enter your City'"
+              [FormControlName]="'city'"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button
+    class="w-full my-5 py-4 text-center {{
+      this.personal.status != 'INVALID'
+        ? 'bg-jetBlue-500 text-white'
+        : 'bg-slate-400 text-jetBlue-400 pointer-events-none cursor-not-allowed'
+    }} bg-jetBlue-500 text-white font-Lexend font-semibold rounded-tl-2xl rounded-br-2xl uppercase text-xl"
+    (click)="validateForm($event)"
+  >
+    Next
+  </button>
+</form>

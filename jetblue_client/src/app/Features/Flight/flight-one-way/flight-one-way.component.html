@@ -1,0 +1,240 @@
+<!--
+  IN THIS SECTION OF PROJECT WE WILL TRY TO CREATE THE RESERVATION FIELDS SUCH AS :
+  ORIGIN      : WHERE WE WILL TRY TO FETCH FROM LOCAL FILE NAMED BY countries+state+cities.json (FROM) This Filed should be required and get the date serached from the backend after that from the local storage of the browser
+
+  DESTINATION : WHERE WE WILL TRY TO FETCH FROM LOCAL FILE NAMED BY countries+state+cities.json (TO) This Filed should be required and get the date serached from the backend after that from the local storage of the browser
+
+  DEPART      :
+-->
+<div
+  class="w-full h-20 flex flex-row gap-2 items-center justify-center flex-nowrap"
+>
+  <!--  This for Origin -->
+  <div class="group">
+    <div class="min-w-52 h-full relative">
+      <div class="relative min-h-20 w-full rounded-md">
+        <input
+          type="text"
+          id="From"
+          class="peer min-h-20 w-full rounded-md border border-black/50 px-5 pt-3 text-xl overflow-ellipsis transition-colors aria-expanded:border-2 aria-expanded:outline-none focus:border-2 focus:border-black focus:outline-none"
+          autocomplete="off"
+          aria-expanded="false"
+          aria-selected="false"
+          (focusout)="emptyField($event)"
+          (change)="emptyField($event)"
+          (keydown)="emptyField($event)"
+          (keyup)="searchCible($event)"
+          value="{{ this.Origin }}"
+          #inputOrigin
+        />
+        <label
+          for="From"
+          class="group/test absolute left-5 top-1/2 -translate-y-1/2 transform cursor-text text-xl text-gray-600 transition-all peer-focus:top-5 peer-focus:text-base peer-aria-expanded:top-5 peer-aria-expanded:text-base"
+        >
+          From
+        </label>
+      </div>
+      <!--    List of cities -->
+      <div
+        class="
+       absolute top-full transform translate-y-1 min-w-80 max-h-52 overflow-y-scroll  bg-white flex-col rounded-b-md pt-5  shadow-2xl
+      {{
+          inputOrigin.getAttribute('aria-expanded') === 'true'
+            ? 'flex'
+            : 'hidden'
+        }}
+      {{
+          inputOrigin.getAttribute('aria-selected') === 'false'
+            ? 'flex'
+            : 'hidden'
+        }}
+"
+      >
+        <!--      As Features -->
+        <!--      Will Have To Section First for Nearby -->
+        <!--      Recent Search That Will Store In Local Storage Of Browser -->
+        <!--      Essential Functionality  -->
+        <!--      Loading Section -->
+        <!--      Search By Name -->
+        <!--      Browse By Region -->
+        <div class="w-full">
+          <!--        List of cities  -->
+          @if (this.resultSerach.length == 0) {
+          <h1 class="text-center text-xl text-jetBlue-500/50">Loading ...</h1>
+          } @else {
+          <h1
+            class="text-base text-gray-500 font-Lexend font-normal tracking-wide uppercase px-5 divide-y"
+          >
+            Search
+          </h1>
+          <div class="flex flex-col" *ngFor="let i of resultSerach">
+            <h1
+              class="text-xl font-Lexend font-light text-jetBlue-500 py-3 px-5 cursor-pointer hover:bg-jetBlue-500 hover:text-white hover:font-medium"
+              [ngClass]="{
+                'bg-jetBlue-500 text-white font-medium': i == this.Origin
+              }"
+              (click)="setOrigin($event)"
+            >
+              {{ i }}
+            </h1>
+          </div>
+          }
+        </div>
+        <div
+          class="w-full min-h-10 flex flex-row items-center justify-center gap-5 bg-black/50"
+        >
+          <h1>Medium</h1>
+          <h1>Large</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--  This for Destination -->
+  <div class="group">
+    <div class="min-w-52 h-full relative">
+      <div class="relative min-h-20 w-full rounded-md">
+        <input
+          type="text"
+          id="To"
+          class="peer min-h-20 w-full rounded-md border border-black/50 px-5 pt-3 text-xl overflow-ellipsis transition-colors aria-expanded:border-2 aria-expanded:outline-none focus:border-2 focus:border-black focus:outline-none"
+          autocomplete="off"
+          aria-expanded="false"
+          aria-selected="false"
+          (focusout)="emptyField($event)"
+          (change)="emptyField($event)"
+          (keydown)="emptyField($event)"
+          (keyup)="searchCible($event)"
+          value="{{ this.Destination }}"
+          #inputDestination
+        />
+        <label
+          for="From"
+          class="group/test absolute left-5 top-1/2 -translate-y-1/2 transform cursor-text text-xl text-gray-600 transition-all peer-focus:top-5 peer-focus:text-base peer-aria-expanded:top-5 peer-aria-expanded:text-base"
+        >
+          To
+        </label>
+      </div>
+      <!--    List of cities -->
+      <div
+        class="
+       absolute top-full transform translate-y-1  min-w-80 max-h-52 overflow-y-scroll  bg-white flex-col rounded-b-md pt-5 shadow-2xl
+      {{
+          inputDestination.getAttribute('aria-expanded') === 'true'
+            ? 'flex'
+            : 'hidden'
+        }}
+      {{
+          inputDestination.getAttribute('aria-selected') === 'false'
+            ? 'flex'
+            : 'hidden'
+        }}
+"
+      >
+        <!--      As Features -->
+        <!--      Will Have To Section First for Nearby -->
+        <!--      Recent Search That Will Store In Local Storage Of Browser -->
+        <!--      Essential Functionality  -->
+        <!--      Loading Section -->
+        <!--      Search By Name -->
+        <!--      Browse By Region -->
+        <div class="w-full">
+          <!--        List of cities  -->
+          @if (this.resultSerach.length == 0) {
+          <h1 class="text-center text-xl text-jetBlue-500/50">Loading ...</h1>
+          } @else {
+          <h1
+            class="text-base text-gray-500 font-Lexend font-normal tracking-wide uppercase px-5 divide-y"
+          >
+            Search
+          </h1>
+          <div class="flex flex-col" *ngFor="let i of resultSerach">
+            <h1
+              class="text-xl font-Lexend font-light text-jetBlue-500 py-3 px-5 cursor-pointer hover:bg-jetBlue-500 hover:text-white hover:font-medium"
+              [ngClass]="{
+                'bg-jetBlue-500 text-white font-medium': i == this.Origin
+              }"
+              (click)="setDestination($event)"
+            >
+              {{ i }}
+            </h1>
+          </div>
+          }
+        </div>
+        <div
+          class="w-full min-h-10 flex flex-row items-center justify-center gap-5 bg-black/50"
+        >
+          <h1>Medium</h1>
+          <h1>Large</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--  Departure Section-->
+  <div class="group">
+    <div class="min-w-36 h-full relative">
+      <div class="relative min-h-20 w-full rounded-md">
+        <input
+          type="text"
+          id="departure"
+          class="peer min-h-20 w-full rounded-md border border-black/50 px-5 pt-3 text-xl overflow-ellipsis transition-colors aria-expanded:border-2 aria-expanded:outline-none focus:border-2 focus:border-black focus:outline-none"
+          autocomplete="off"
+          aria-expanded="false"
+          aria-selected="false"
+          (focusout)="emptyField($event)"
+          (change)="emptyField($event)"
+          (focus)="setActiveCalandar(departureDate)"
+          #departureDate
+        />
+        <label
+          for="departure"
+          class="group/test absolute left-5 top-1/2 -translate-y-1/2 transform cursor-text text-xl text-gray-600 transition-all peer-focus:top-5 peer-focus:text-base peer-aria-expanded:top-5 peer-aria-expanded:text-base"
+        >
+          Departure
+        </label>
+      </div>
+    </div>
+    <!-- DATE TIME PICKER FROM primeNg   -->
+    <div class="absolute origin-top-right left-0 translate-x-3/4">
+      <app-calander-range
+        (calenderInfo)="calanderInfo($event)"
+        [CalendarState]="this.calendarActive"
+        [CalendarType]="this.typeFlight == 'Round trip' ? 'range' : 'single'"
+      ></app-calander-range>
+    </div>
+  </div>
+  <!-- Arrival Section  -->
+  @if (this.typeFlight == 'Round trip') {
+  <div class="group">
+    <div class="min-w-36 h-full relative">
+      <div class="relative min-h-20 w-full rounded-md">
+        <input
+          type="text"
+          id="arrival"
+          class="peer min-h-20 w-full rounded-md border border-black/50 px-5 pt-3 text-xl overflow-ellipsis transition-colors aria-expanded:border-2 aria-expanded:outline-none focus:border-2 focus:border-black focus:outline-none"
+          autocomplete="off"
+          aria-expanded="false"
+          aria-selected="false"
+          (focusout)="emptyField($event)"
+          (change)="emptyField($event)"
+          #arrivalDate
+        />
+        <label
+          for="arrival"
+          class="group/test absolute left-5 top-1/2 -translate-y-1/2 transform cursor-text text-xl text-gray-600 transition-all peer-focus:top-5 peer-focus:text-base peer-aria-expanded:top-5 peer-aria-expanded:text-base"
+        >
+          Arrival
+        </label>
+      </div>
+    </div>
+  </div>
+  }
+  <!--  Search Flight-->
+  <div>
+    <button
+      class="min-h-20 min-w-44 w-full rounded-l-sm rounded-r-lg bg-jetBlue-500 text-white font-JBKlarheit font-semibold text-xl flex justify-center items-center cursor-pointer transition-colors ease-in-out hover:bg-jetBlue-400"
+      (click)="setData($event)"
+    >
+      Search Flight
+    </button>
+  </div>
+</div>

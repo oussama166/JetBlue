@@ -1,0 +1,17 @@
+// Redifine the style of mat-select
+.mat-mdc-select-value-text {
+  color: red;
+}
+
+.add-enable {
+  color: var(--enable);
+  cursor: pointer;
+  border-color: var(--enable);
+}
+
+.add-disable {
+  color: var(--disable)!important;
+  border-color: var(--disable);
+  cursor: pointer;
+  pointer-events: none;
+}

@@ -1,0 +1,49 @@
+<div class="w-full divide-solid divide-y divide-gray-600/10">
+  <div class="h-32  w-full px-60 flex items-center">
+    <h1 class="text-5xl font-JBKlarheit font-semibold text-jetBlue-600">Page Not Found</h1>
+  </div>
+  <div class="w-full flex flex-row items-center justify-center gap-20 py-20 ">
+    <div class="w-1/2 flex items-end justify-end">
+      <img src="assets/images/notFound.svg" width="400" height="400" alt="not found" />
+    </div>
+    <div class="w-1/2 py-3">
+      <div class="flex flex-col gap-5">
+        <h1 class="text-4xl font-JBKlarheit font-semibold text-jetBlue-400">Oops!</h1>
+        <span class="text-2xl font-JBKlarheit font-normal text-black/80 w-2/3 text-wrap">The page you’re trying to
+          visit is unavailable, but we have plenty of other pages on jetblue.com worth exploring!
+        </span>
+      </div>
+      <div>
+        <h1 class="text-jetBlue-400 text-4xl font-JBKlarheit font-semibold py-3">Find your way</h1>
+        <ul class="py-5 text-xl text-jetBlue-500 font-JBKlarheit underline space-y-2 cursor-pointer">
+          <li class="hover:text-jetBlue-400">Book a flight</li>
+          <li class="hover:text-jetBlue-400">Check into a flight</li>
+          <li class="hover:text-jetBlue-400">Track a flight</li>
+          <li class="hover:text-jetBlue-400">Manage your flights</li>
+          <li class="hover:text-jetBlue-400">Book a vacation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="w-full flex flex-col items-center justify-center gap-3 text-black py-10 bg-gray-400/10">
+    <h1 class="font-JBKlarheit font-semibold text-4xl text-jetBlue-400">Need help ?</h1>
+    <div class="relative min-h-10 w-1/3 m-auto rounded-sm">
+      <input type="text" id="From" class="
+      peer min-h-16 w-full rounded-l-md border border-black/20 px-5 pt-5  text-xl overflow-ellipsis transition-colors
+      aria-expanded:border-2 aria-expanded:outline-none
+      focus:border-2 focus:border-black focus:outline-none" autocomplete="off" aria-expanded="false"
+        aria-selected="false" (keydown)="emptyField($event)" />
+      <label for="From" class="
+      group/test absolute left-5 top-1/2 -translate-y-1/2 transform cursor-text text-xl text-gray-600 transition-all
+      peer-focus:top-5 peer-focus:text-base
+      peer-aria-expanded:top-5 peer-aria-expanded:text-base">
+        Search for answers
+      </label>
+      <button class="absolute min-h-10 h-full p-5 bg-jetBlue-500 rounded-r-md
+      hover:bg-jetBlue-600 transition-colors ease-out">
+        <mat-icon svgIcon="search" class="icon"></mat-icon>
+      </button>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,249 @@
+<!-- Card Body Flight -->
+<div
+  class="w-full rounded-lg bg-white p-10 flex flex-col items-start justify-start gap-5 shadow-lg"
+>
+  <div class="w-full flex items-start justify-start gap-5">
+    <!-- Left Side -->
+    <div class="w-2/3 flex flex-shrink-0">
+      <!-- From -> to -->
+      <div class="flex flex-col w-full gap-y-16">
+        <!-- Uper side  -->
+        <div class="flex items-start justify-between gap-20">
+          <div class="flex gap-20">
+            <!-- Time -->
+            <div class="flex gap-4 items-start">
+              <!-- From -->
+              <div class="flex flex-col font-JBKlarheit">
+                <span class="text-xl text-jetBlue-400 lowercase">7:00 AM</span>
+                <span>JFK</span>
+              </div>
+              <div class="flex items-center pt-2">
+                <!-- Arrow -->
+                <mat-icon
+                  svgIcon="triangle"
+                  class="w-3 h-3 rotate-90 triangle"
+                />
+              </div>
+              <!-- To -->
+              <div class="flex flex-col font-JBKlarheit">
+                <span class="text-xl text-jetBlue-400 lowercase">9:00 AM</span>
+                <span>LAX</span>
+              </div>
+            </div>
+            <!-- End time -->
+            <!-- Flight number -->
+            <div class="flex flex-col items-start font-JBKlarheit">
+              <span class="text-xl text-jetBlue-400 lowercase">5h 32m</span>
+              <!-- <span
+                      class="text-jetBlue-400 font-JBKlarheit font-normal underline"
+                      >B6 411</span -->
+              <span
+                class="text-jetBlue-400 font-JBKlarheit font-normal underline"
+                >B6 518, B6 2577</span
+              >
+            </div>
+            <!-- Flight number -->
+          </div>
+          <!-- Flight number -->
+          <div class="font-JBKlarheit flex flex-col items-start">
+            <!-- <span class="text-xl text-jetBlue-400 capitalize"
+                    >Non stop</span
+                  > -->
+            <span class="text-xl text-jetBlue-400 capitalize">1 Stop:BOS</span>
+            <span> Layover:1h 30m </span>
+          </div>
+          <!-- Flight number -->
+          <!-- End  From -> to -->
+          <!-- Travel time -->
+          <!-- If any stops  -->
+        </div>
+        <!-- End Uper side  -->
+        <!-- Footer side -->
+        <div class="w-full flex flex-col items-start justify-between">
+          <p-divider class="w-full h-1 bg-gray-100 rounded-lg" />
+          <div class="w-full flex justify-between mt-5">
+            <div>
+              <h1 class="text-2xl font-bold text-jetBlue-400 font-JBKlarheit">
+                JetBlue
+              </h1>
+            </div>
+            <div class="flex gap-5 text-jetBlue-500 underline cursor-pointer">
+              <span (click)="showDialog()">Details</span>
+              <span (click)="showDialog()">Seats</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Footer side -->
+    </div>
+    <!-- End Left Side -->
+    <div class="w-full flex gap-5">
+      <div
+        class="w-full min-h-36 rounded-lg flex flex-col items-end justify-between p-5 border cursor-pointer hover:border-jetBlue-500 transition-all ease-in-out"
+        (click)="ShowPass()"
+      >
+        <!-- Busness cat -->
+        <!-- Price -->
+        <h1 class="text-jetBlue-400 font-JBKlarheit leading-7 capitalize">
+          from
+          <span class="text-2xl font-bold font-Lexend"><sup>$</sup>334</span>
+        </h1>
+        <!-- End Price -->
+        <span>see fares</span>
+        <!-- Busness cat -->
+        <!-- In case the econnmic class is sold out -->
+        <span class="text-black/50">Blue Basic sold out</span>
+
+        <!-- Prime cat -->
+        <!-- End Prime cat -->
+      </div>
+      <div
+        class="w-full min-h-36 rounded-lg flex flex-col items-end justify-between p-5 border text-right font-Lexend font-semibold"
+      >
+        No Busness class in this vol
+      </div>
+      <!-- Right side  -->
+      <!-- End Right side  -->
+    </div>
+  </div>
+
+  <div
+    class="py-10 transition-all ease-in-out flex items-start justify-start gap-5"
+    [ngClass]="{'w-full' : Pass , 'w-0' : !Pass}"
+  >
+    <app-card
+      State="disable"
+      Price="Sold Out"
+      TypePass="Basic"
+
+    />
+    <app-card
+      State="enable"
+      Price="374"
+      TypePass="Blue"
+    />
+    <app-card
+      State="enable"
+      Price="409"
+      TypePass="Blue Extra"
+    />
+    <app-card
+      State="enable"
+      Price="600"
+      TypePass="Mint"
+    />
+  </div>
+</div>
+
+<!-- Dailgue of the details -->
+<p-dialog
+  header="Details of the flight"
+  [modal]="visible"
+  [(visible)]="visible"
+  [style]="{ width: '80vw' }"
+>
+  <div class="flex">
+    <!-- Start Left side for info travel-->
+    <div class="w-2/3 flex flex-col items-start justify-start gap-5 p-5">
+      <!-- START Destination and arrival aiports -->
+      <div class="text-2xl font-JBKlarheit font-semibold text-jetBlue-600">
+        <h3>New York, NY (JFK) - Los Angeles, CA (LAX)</h3>
+        <!-- END Destination and arrival aiports -->
+      </div>
+      <div class="w-full flex items-center justify-center gap-5 px-5 my-5">
+        <h1
+          class="text-jetBlue-500 text-xl font-Lexend font-semibold relative after:absolute after:h-2 after:bg-orange-500 after:left-0 after:top-full cursor-pointer"
+          [attr.aria-disabled]="isDisabled(0)"
+          (click)="switchState(0)"
+        >
+          Amenities & Performance
+        </h1>
+        <h1
+          class="text-jetBlue-500 text-xl font-Lexend font-semibold relative after:absolute after:h-2 after:bg-orange-500 after:left-0 after:top-full cursor-pointer"
+          [attr.aria-disabled]="isDisabled(1)"
+          (click)="switchState(1)"
+          #seatMap
+        >
+          Set Map
+        </h1>
+      </div>
+      <!-- Start Content of this flight  -->
+      <div
+        class="max-w-full flex-row items-start justify-start flex-nowrap {{
+          activeIndex == 0 ? 'flex' : 'hidden'
+        }}"
+      >
+        <ul class="flex flex-col text-wrap list-square text-xl gap-2">
+          <li>100+ channels of li ve DIRECTV®</li>
+          <li>Pillows (for purchase)</li>
+          <li>Blankets (for purchase)</li>
+          <li>
+            DIRECTV® and SiriusXM Radio® are not available outside the
+            contiguous U.S.
+          </li>
+          <li>Eat Up® Café fresh food menu (for purchase)</li>
+          <li>Easy-to-reach power at every seat</li>
+          <li>10.1" touchscreen at every seat</li>
+          <li>
+            Tons of hit movies, full seasons of your favorite shows & more
+          </li>
+          <li>Adjustable headrests</li>
+        </ul>
+
+        <ul class="h-full text-nowrap flex flex-col text-xl gap-2">
+          <li>Operated by: JetBlue</li>
+          <li>Equipment: A320</li>
+          <li>Total miles: 2,248</li>
+          <li>On-time arrival: N/A</li>
+          <li>Delayed 30+ min: N/A</li>
+          <li>Cancelled: N/A</li>
+        </ul>
+      </div>
+      <!-- End Content of this flight  -->
+
+      <!-- Start Seat Map  of this flight  -->
+      <div
+        class="w-full h-full space-y-4  {{ activeIndex == 1 ? '' : 'hidden' }}"
+      >
+        <h1 class="text-xl font-JBKlarheit text-jetBlue-400">
+          About this aircraft: A321neo
+        </h1>
+        <p class="leading-8">
+          Take comfort to new heights with modern design, mood lighting, quieter
+          engines, tons of entertainment and the Pantry. This plane also
+          features our reimagined all-suite Mint experience with lie-flat seats
+          and direct aisle access.
+        </p>
+        <div
+          class="w-full h-60 border rounded-md overflow-hidden bg-blue-300 flex items-center justify-center"
+        >
+          <img
+            src="assets/images/AirbusA321.svg"
+            class="rotate-90 scale-150"
+            alt="AirbusA321"
+          />
+        </div>
+      </div>
+      <!-- End Seat Map  of this flight  -->
+    </div>
+    <!-- End Left side for info travel-->
+    <!-- Start right side for info travel-->
+    <div>
+      <p-timeline [value]="events">
+        <ng-template
+          pTemplate="marker"
+          let-event
+          styleClass="customized-timeline"
+        >
+          <span class="w-5 h-5 rounded-full bg-jetBlue-400"> </span>
+        </ng-template>
+        <ng-template pTemplate="content" let-event>
+          <h1 class="uppercase text-xl font-Lexend">{{ event.status }}</h1>
+          <h5 class="text-base font-Lexend">{{ event.date }}</h5>
+          <h5 class="text-base font-Lexend">{{ event.terminal }}</h5>
+        </ng-template>
+      </p-timeline>
+    </div>
+    <!-- End right side for info travel-->
+  </div>
+</p-dialog>

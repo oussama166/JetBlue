@@ -1,0 +1,66 @@
+<div class="w-full h-screen flex justify-center">
+  <!-- Resvervation section -->
+  <section
+    class="w-full max-h-[65vh] flex flex-col items-center justify-center relative bg-reservation bg-cover bg-no-repeat bg-center gap-5 shadow-lg"
+  >
+    <div class="absolute inset-0 bg-hero opacity-60 z-[4]"></div>
+    <h1 class="text-4xl font-JBKlarheit font-bold text-white z-[5]">
+      It's so fly to see you.
+    </h1>
+    <div class="flex flex-row text-white z-[5]">
+      <h1
+        id="items"
+        class="font-JBKlarheit font-medium tracking-wide text-xl border-b px-5 py-5 buttonNav inline-flex items-center"
+        aria-active="true"
+      >
+        <mat-icon
+          svgIcon="plane"
+          class="icon text-black w-10 h-10 mr-2"
+        ></mat-icon>
+        Flight
+      </h1>
+      <h1
+        id="items"
+        class="font-JBKlarheit font-medium tracking-wide text-xl border-b px-5 py-5 buttonNav inline-flex items-center"
+        aria-active="false"
+      >
+        <mat-icon
+          svgIcon="flight+hotel"
+          class="icon text-black w-10 h-10 mr-2"
+        ></mat-icon>
+        Flight + Hotel
+      </h1>
+      <h1
+        id="items"
+        class="font-JBKlarheit font-medium tracking-wide text-xl border-b px-5 py-5 buttonNav inline-flex items-center"
+        aria-active="false"
+      >
+        <mat-icon
+          svgIcon="Cars"
+          class="icon text-black w-10 h-10 mr-2"
+        ></mat-icon>
+        Cars
+      </h1>
+    </div>
+    <div
+      class="min-w-[70vw] flex flex-col items-start py-5 z-[5] bg-gray-200 rounded-md px-5"
+    >
+      <!-- First row for personal information -->
+      <app-poopus
+        (getFlightTypePassengers)="getDataFromPopups($event)"
+      ></app-poopus>
+      <!-- Second row for flight information -->
+      <div class="w-full">
+        <app-flight-one-way
+          *ngIf="
+            infoFlight.flightType == 'One way' ||
+            infoFlight.flightType == 'Round trip'
+          "
+          [data]="infoFlight"
+          (returnData)="getReturnData($event)"
+          [typeFlight]="infoFlight.flightType"
+        ></app-flight-one-way>
+      </div>
+    </div>
+  </section>
+</div>

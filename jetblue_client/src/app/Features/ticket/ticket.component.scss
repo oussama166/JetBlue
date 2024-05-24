@@ -1,0 +1,13 @@
+[aria-disabled="false"]::after {
+    width: 100%;
+}
+[aria-disabled="true"]::after {
+    width: 0%;
+}
+
+
+// Marker of the time line
+::ng-deep .p-timeline .p-timeline-event-connector {
+  background-color: #0033a0;
+  height: 200px;
+}

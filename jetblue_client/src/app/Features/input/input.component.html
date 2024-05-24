@@ -1,0 +1,126 @@
+<div class="space-y-3" [class.hidden]="disable">
+  <div class="flex flex-row justify-between pr-2">
+    <label for="{{ Label }}" class="text-xl text-slate-600">{{ Label }}</label>
+    <img
+      src="assets/images/valid.svg"
+      alt="email icon"
+      width="20"
+      *ngIf="checkEmail == true"
+    />
+  </div>
+  <div class="relative overflow-hidden">
+    <!--  MULTIPLE CHOOSE  -->
+    @if (this.Type === "Gender") {
+    <div class="flex flex-col border">
+      <div class="flex gap-3 border px-5 py-3">
+        <p-radioButton
+          name="female"
+          value="Female"
+          [(ngModel)]="ingredient"
+          (onClick)="setGender('FEMALE')"
+          inputId="ingredient1"
+        ></p-radioButton>
+        <label for="ingredient1" class="text-xl text-jetBlue-400 cursor-pointer"
+          >Female</label
+        >
+      </div>
+      <div class="flex gap-3 border px-5 py-3">
+        <p-radioButton
+          name="male"
+          value="Male"
+          [(ngModel)]="ingredient"
+          (onClick)="setGender('MALE')"
+          inputId="ingredient2"
+        ></p-radioButton>
+        <label for="ingredient2" class="text-xl text-jetBlue-400 cursor-pointer"
+          >Male</label
+        >
+      </div>
+    </div>
+    }
+    <!-- Data from backend  -->
+    <!-- Contry -->
+    @if (this.Type === "Country") {
+    <select
+      class="flex grow w-full p-3 border border-black/20 outline-none text-xl aria-busy:border-2 aria-busy:border-red-500 focus:border-2 focus:border-jetBlue-500 active:border-2 active:border-jetBlue-400 peer transition-all duration-100 ease-in-out"
+      (focusout)="validateInput($event)"
+      (change)="validateInput($event)"
+      (change)="changeValue($event)"
+      aria-busy="false"
+    >
+      <option *ngFor="let country of Country" [value]="country">
+        {{ country }}
+      </option>
+    </select>
+    }
+    <!-- State -->
+    @if (this.Type === "State") {
+    <select
+      class="flex grow w-full p-3 border border-black/20 outline-none text-xl aria-busy:border-2 aria-busy:border-red-500 focus:border-2 focus:border-jetBlue-500 active:border-2 active:border-jetBlue-400 peer transition-all duration-100 ease-in-out"
+      (focusout)="validateInput($event)"
+      (change)="validateInput($event)"
+      (change)="changeValue($event)"
+      aria-busy="false"
+    >
+      <option *ngFor="let state of State" [value]="state">{{ state }}</option>
+    </select>
+    }
+    <!-- Password -->
+    @if(this.Type === "Password"){
+    <input
+      type="{{ this.toggleOffOn ? 'text' : 'password' }}"
+      class="peer w-full p-3 border border-black/20 outline-none text-xl aria-busy:border-2 aria-busy:border-red-500 focus:border-2 focus:border-jetBlue-500 active:border-2 active:border-jetBlue-400 peer transition-all duration-100 ease-in-out"
+      pInputText
+      pTooltip
+      [tooltipOptions]="tooltipOptions"
+      (focusout)="validateInput($event)"
+      (change)="validateInput($event)"
+      (change)="changeValue($event)"
+      aria-busy="false"
+    />
+    <mat-icon
+      svgIcon="EyeOn"
+      class="absolute top-4 right-5 peer-focus:right-10 hover:bg-gray-400/100 rounded-full transition-all ease-in-out cursor-pointer"
+      (click)="VisibleOnOff()"
+    ></mat-icon>
+
+    <span
+      class="absolute top-0 left-0 w-0 h-[70px] bg-jetBlue-400 peer-active:w-2 peer-focus:w-2 peer-invalid:w-2 peer-aria-busy:w-2 peer-aria-busy:bg-red-500 transition-all duration-100 ease-in-out"
+    ></span>
+    } @if (this.Type == "email") {
+    <input
+      type="{{ Type }}"
+      class="w-full p-3 border border-black/20 outline-none text-xl aria-busy:border-2 aria-busy:border-red-500 focus:border-2 focus:border-jetBlue-500 active:border-2 active:border-jetBlue-400 peer transition-all duration-100 ease-in-out"
+      (focusout)="validateInput($event)"
+      (change)="validateInput($event)"
+      (change)="changeValue($event)"
+      aria-busy="false"
+    />
+    }
+    <!-- INPUT CASE -->
+    @if (this.Type !== "Gender" && this.Type !== "City" && this.Type !== "State"
+    && this.Type !== "Country" && this.Type !== "Password" && this.Type !==
+    "email" ) {
+    <input
+      type="{{ Type }}"
+      class="w-full p-3 border border-black/20 outline-none text-xl aria-busy:border-2 aria-busy:border-red-500 focus:border-2 focus:border-jetBlue-500 active:border-2 active:border-jetBlue-400 peer transition-all duration-100 ease-in-out"
+      (focusout)="validateInput($event)"
+      (change)="validateInput($event)"
+      (change)="changeValue($event)"
+      aria-busy="false"
+    />
+
+    }
+
+    <span
+      class="absolute top-0 left-0 w-0 h-[70px] bg-jetBlue-400 peer-active:w-2 peer-focus:w-2 peer-invalid:w-2 peer-aria-busy:w-2 peer-aria-busy:bg-red-500 transition-all duration-100 ease-in-out"
+    ></span>
+  </div>
+  <div>
+    <span
+      class="text-red-500 text-xl mt-3"
+      *ngIf="EmailError || this.passwordValid"
+      >{{ ErrorMessage }}</span
+    >
+  </div>
+</div>

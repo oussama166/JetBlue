@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22"
+  fill="" focusable="false" class="search-svg">
+  <g transform="translate(-3 -3)" class="search-svg-inside">
+    <path d="M24.707 23.293a1 1 0 0 1-1.414 1.414l-5.42-5.42a1 1 0 0 1 1.414-1.414l5.42 5.42z"></path>
+    <path
+      d="M19.288 19.286A9.54 9.54 0 1 1 5.797 5.794a9.54 9.54 0 0 1 13.491 13.492zm-1.414-1.414A7.54 7.54 0 1 0 7.211 7.208a7.54 7.54 0 0 0 10.663 10.664z"></path>
+  </g>
+</svg>

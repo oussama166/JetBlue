@@ -1,0 +1,106 @@
+<!-- This compent is dedicated to be the intermidate betwen jon and createion of account -->
+<!-- Data contain -->
+<!-- Email -->
+<div
+  class="w-full h-full bg-signIn bg-contain flex flex-col items-center justify-center"
+>
+  <div class="max-w-[30vw] w-full min-h-20 bg-white rounded-md px-16 py-20">
+    <img
+      src="assets/images/logo/trueBlue.svg"
+      alt="True blue logo"
+      width="200"
+      class="mb-10"
+    />
+    <div class="mb-10 space-y-1">
+      <p class="text-4xl font-JBKlarheit font-semibold text-jetBlue-600 my-3">
+        Join us!
+      </p>
+      <p class="text-xl font-JBKlarheit font-normal text-jetblueText-500">
+        Earn points,book faster and more.
+      </p>
+    </div>
+
+    <div class="space-y-1">
+      <div class="flex flex-row justify-between pr-2">
+        <label for="Email" class="text-xl text-slate-600">Email</label>
+        <img
+          src="assets/images/valid.svg"
+          alt="email icon"
+          width="20"
+          *ngIf="checkEmail == true"
+        />
+      </div>
+      <div class="relative overflow-hidden">
+        <input
+          type="email"
+          class="w-full p-3 border-2 border-black/50 outline-none text-xl aria-busy:border-2 aria-busy:border-red-500 focus:border-2 focus:border-jetBlue-500 active:border-2 active:border-jetBlue-400 peer transition-all duration-100 ease-in-out"
+          (focusout)="validateEmail($event)"
+          aria-busy="false"
+          required
+          #email
+        />
+        <span
+          class="absolute top-0 left-0 w-0 h-[70px] bg-jetBlue-400 peer-active:w-2 peer-focus:w-2 peer-invalid:w-2 peer-aria-busy:bg-red-500 transition-all duration-100 ease-in-out"
+        ></span>
+      </div>
+      <span class="text-red-500 text-base mt-3" *ngIf="EmailError"
+        >Please enter valid email</span
+      >
+    </div>
+
+    <button
+      class="w-full bg-jetBlue-500  text-white text-xl py-3 mt-5 rounded-tl-xl rounded-br-xl flex items-center justify-center gap-2 hover:bg-jetBlue-400 hover:shadow-md transition-all duration-100 ease-in-out
+      {{
+        this.EmailError
+          ? 'pointer-events-none bg-gray-500 text-jetBlue-600'
+          : 'cursor-pointer'
+      }}
+      "
+      (click)="join()"
+    >
+      Next
+      <mat-icon
+        svgIcon="triangle"
+        class="rotate-90 w-3 h-3 text-white color-white triangle"
+      ></mat-icon>
+    </button>
+
+    <div class="w-full h-0.5 bg-jetblueText-500/30 mt-10 mb-3"></div>
+    <div class="w-full flex justify-between">
+      <a
+        href="/enroll/signIn"
+        class="text-jetBlue-600 text-base font-JBKlarheit font-semibold cursor-pointer hover:underline"
+        >Sign in</a
+      >
+      <a
+        href="/"
+        class="text-jetBlue-600 text-base font-JBKlarheit font-semibold cursor-pointer hover:underline"
+        >Need Help?</a
+      >
+    </div>
+  </div>
+</div>
+<p-dialog
+  header="Email already exist"
+  [modal]="true"
+  [(visible)]="visible"
+  [style]="{ width: '25rem' }"
+>
+  <h1 class="text-xl text-black mt-3">
+    The email already exists. We cannot create an account with this email.
+  </h1>
+  <p>You can sign in or use another email to create an account.</p>
+  <button
+    class="w-full bg-jetBlue-500 text-white text-xl py-3 mt-5 rounded-tl-xl rounded-br-xl flex items-center justify-center gap-2 hover:bg-jetBlue-400 hover:shadow-md transition-all duration-100 ease-in-out"
+    (click)="visible = false"
+  >
+    OK
+  </button>
+  <button
+    class="w-full bg-transparent text-jetBlue-600 border border-jetBlue-500  text-xl py-3 mt-5 rounded-tl-xl rounded-br-xl flex items-center justify-center gap-2 hover:bg-jetBlue-500 hover:text-white hover:shadow-md  transition-all duration-100 ease-in-out"
+    (click)="visible = false"
+    [routerLink]="['/enroll/signIn']"
+  >
+    Go to Sign In
+  </button>
+</p-dialog>

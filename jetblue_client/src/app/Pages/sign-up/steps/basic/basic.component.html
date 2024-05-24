@@ -1,0 +1,148 @@
+<form
+  [formGroup]="basic"
+  class="{{ !show ? 'hidden' : 'flex' }} flex-col divide-y-2"
+>
+  <!-- Name info  -->
+  <div class="w-full flex flex-row gap-x-10 py-5">
+    <!-- Title -->
+    <div>
+      <h1
+        class="max-w-sm w-full text-4xl text-jetBlue-600 font-Lexend font-bold text-wrap tracking-normal"
+      >
+        What's your full name ?
+      </h1>
+      <p
+        class="text-lg text-jetblueText-500 font-JBKlarheit tracking-wide w-96"
+      >
+        Please enter it as it appears on your government-issued ID.
+      </p>
+    </div>
+    <!-- Inputs -->
+    <div>
+      <div class="w-96">
+        <div class="flex flex-col gap-5">
+          <div class="flex flex-col gap-2">
+            <app-input
+              Label="Name"
+              [Type]="'text'"
+              [ErrorMessage]="'Please enter your Name'"
+              [FormControlName]="'name'"
+              [isFocus]="true"
+            />
+          </div>
+          <div class="flex flex-col gap-2">
+            <app-input
+              Label="Middle Name(s) "
+              [Type]="'text'"
+              [ErrorMessage]="'Please enter your Middle Name'"
+              [IsOptional]="true"
+              [FormControlName]="'middleName'"
+            />
+          </div>
+          <div class="flex flex-col gap-2">
+            <app-input
+              Label="Last Name"
+              [Type]="'text'"
+              [ErrorMessage]="'Please enter your Last Name'"
+              [FormControlName]="'lastName'"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- phone info /email -->
+  <div class="w-full flex flex-row gap-x-10 py-10">
+    <!-- Title -->
+    <div>
+      <h1
+        class="max-w-sm w-full text-4xl text-jetBlue-600 font-Lexend font-bold text-wrap tracking-normal"
+      >
+        Let's create your credentials, using an email address not associated
+        with any other account.
+      </h1>
+    </div>
+    <!-- Inputs -->
+    <div>
+      <div class="w-96">
+        <div class="flex flex-col gap-5">
+          <div class="flex flex-col gap-2">
+            <app-input
+              Label="Email"
+              [Type]="'email'"
+              [ErrorMessage]="'Please enter your Email'"
+              [FormControlName]="'email'"
+              [Value]="this.basic.getRawValue()"
+            />
+          </div>
+          <div class="flex flex-col gap-2">
+            <app-input
+              Label="Phone"
+              [Type]="'Phone'"
+              [ErrorMessage]="'Please enter your Phone Number'"
+              [FormControlName]="'phone'"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Birth info -->
+  <div class="w-full flex flex-row gap-x-10 py-10">
+    <!-- Title -->
+    <div>
+      <h1
+        class="max-w-sm w-full text-4xl text-jetBlue-600 font-Lexend font-bold text-wrap tracking-normal"
+      >
+        When’s your birthday?
+      </h1>
+      <p
+        class="text-lg text-jetblueText-500 font-JBKlarheit tracking-wide w-96"
+      >
+        This will start your travel profile (and lets us wish you a happy
+        birthday).
+      </p>
+    </div>
+    <!-- Inputs -->
+    <div>
+      <div class="w-96">
+        <div class="flex flex-col gap-5">
+          <div class="flex flex-row gap-2">
+            <app-input
+              Label="Day"
+              [Type]="'Day'"
+              [ErrorMessage]="'Please enter your Phone Number'"
+              [FormControlName]="'day'"
+            />
+            <app-input
+              Label="Month & Year"
+              [Type]="'Month'"
+              [ErrorMessage]="'Please enter your Phone Number'"
+              [FormControlName]="'month'"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button
+    class="w-full my-5 py-4 text-center {{
+      this.basic.status != 'INVALID'
+        ? 'bg-jetBlue-500 text-white'
+        : 'bg-slate-400 text-jetBlue-400 pointer-events-none cursor-not-allowed'
+    }} bg-jetBlue-500 text-white font-Lexend font-semibold rounded-tl-2xl rounded-br-2xl uppercase text-xl"
+    (click)="validateForm($event)"
+  >
+    Next
+  </button>
+</form>
+
+<!--name
+middleName
+lastName
+email
+day
+month
+phone-->

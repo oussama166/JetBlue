@@ -1,0 +1,106 @@
+<!-- This page is dedicated to create a user into three step -->
+<!-- First SignUp -->
+<!-- Name  -->
+<!-- Middle name ? -->
+<!-- Last name -->
+<!-- Email -->
+<!-- Phone -->
+<!-- birthday -->
+
+<!-- Second Personel info -->
+<!-- Gender -->
+<!-- Address -->
+<!-- City -->
+<!-- State -->
+<!-- Zip code -->
+<!-- Country -->
+
+<!-- Third Account info -->
+<!-- Username -->
+<!-- Password -->
+<!-- Confirm password -->
+<!-- Security question -->
+<!-- Security answer -->
+<!-- Submit button -->
+<!-- Cancel button -->
+
+<div class="w-full h-full flex flex-col gap-20">
+  <!--  Header -->
+  <!--  Stepper -->
+  <div class="w-full h-[40vh] bg-signIn bg-contain px-80 py-20 space-y-7">
+    <!-- Steps -->
+    <div class="w-full flex flex-row items-center gap-5">
+      <div
+        class="w-10 h-10 p-5
+    flex items-center justify-center
+    rounded-full
+    {{
+          this.counter == 1
+            ? 'activeStep'
+            : this.counter > 1
+            ? 'doneStep'
+            : 'disableStep'
+        }}"
+      >
+        1
+      </div>
+      <div
+        class="w-10 h-10 p-5 flex items-center justify-center rounded-full {{
+          this.counter == 2
+            ? 'activeStep'
+            : this.counter > 2
+            ? 'doneStep'
+            : 'disableStep'
+        }}"
+      >
+        2
+      </div>
+      <div
+        class="w-10 h-10 p-5 flex items-center justify-center rounded-full {{
+          this.counter == 3
+            ? 'activeStep'
+            : this.counter > 3
+            ? 'doneStep'
+            : 'disableStep'
+        }}"
+      >
+        3
+      </div>
+    </div>
+
+    <!--  Headingg info section  -->
+    <div class="flex flex-col gap-3">
+      <h1 class="text-4xl font-JBKlarheit font-semibold text-white capitalize">
+        {{ this.StaticData[counter - 1].title }}
+      </h1>
+      <span
+        class="text-xl font-JBKlarheit font-semibold text-white capitalize tracking-wide"
+        >{{ this.StaticData[counter - 1].description }}</span
+      >
+    </div>
+  </div>
+  <div class="flex fle-col pl-80">
+    <!-- first for basic info -->
+    <!-- We will get three forms  -->
+    <!-- Hard coded -->
+    <!--  // step one -->
+    <form [formGroup]="signUpForm" (ngSubmit)="submitData()">
+      <app-basic
+        [show]="this.counter == 1"
+        (stepCounter)="this.getCounter($event)"
+      />
+      <app-personal
+        [show]="this.counter == 2"
+        (stepCounter)="this.getCounter($event)"
+      />
+      <app-preferences
+        [show]="this.counter == 3"
+        (stepCounter)="this.getCounter($event)"
+      />
+    </form>
+    <!-- // step two -->
+
+    <!-- second for location info -->
+    <!-- last for account info -->
+  </div>
+</div>

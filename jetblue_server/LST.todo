@@ -1,0 +1,20 @@
++ Complete the City and Country DTO and make the service get city by name provide optimize data from db using dtos
++ FIXE THE BUG IN XAMP
++ I NEED  TO FIX THE INCREMENT FROM ENTITY TO DB SHOULD START FROM 1 NOT FROM 0
+`
+    @GeneratedValue(strategy = GenerationType.AUTO, generator="seq")
+    @GenericGenerator(name = "seq", strategy="increment")
+ `
+ #CODE THAT WILL FIX THAT#
++ I NEED TO FIX THE REPOSITORY OF NOTIFICATION TO GET THE RIGHT CONVERSION TYPE
++ TRY TO FIX THE CONTROLLER NOTIFICATION IN THE GET REQUEST ("getNotificationByMessage")
+    (ERROR) -> "the second test for the user"
+            -> 1
+            -> Failed to convert from type [java.lang.Object[]] to type [@org.springframework.data.jpa.repository.Query com.jetblue.jetblue_server.DOA.Modules.Notification] for value [{...}]
++ TRY TO GET THE PROBLEM OF `CommandAcceptanceException` => Alter Table cities modify column country_code Varchar(255) even im just getting the data
+
+            ! check the type of timestamp from jpa to mysql db
+               Incorrect datetime value: '0000-00-00 00:00:00
++ Creating the flight service
+    ++ Creating the entity of airports
+    ++ Creatting

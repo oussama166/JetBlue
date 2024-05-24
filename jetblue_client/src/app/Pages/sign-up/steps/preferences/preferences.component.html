@@ -1,0 +1,59 @@
+<form
+  [formGroup]="sercurityInfo"
+  class="{{ !show ? 'hidden' : 'flex' }} flex-col divide-y-2"
+>
+  <!-- Crediential info -->
+  <div class="w-full flex flex-row gap-x-10 py-20">
+    <!-- Title -->
+    <div class="space-y-7">
+      <h1
+        class="max-w-sm w-full text-4xl text-jetBlue-600 font-Lexend font-bold text-wrap tracking-normal"
+      >
+        What password you prefeer
+      </h1>
+      <p
+        class="text-xl text-jetblueText-500 font-JBKlarheit tracking-wide w-96"
+      >
+        Unlock Personalized Experiences: Password Management
+      </p>
+    </div>
+    <!-- Inputs -->
+    <div>
+      <div class="w-96">
+        <div class="flex flex-col gap-5">
+          <div class="flex flex-col gap-2">
+            <app-input
+              Label="Password"
+              [Type]="'Password'"
+              [ErrorMessage]="'Please the password is invalid !!!'"
+              [FormControlName]="'password'"
+              [setError]="true"
+            />
+          </div>
+          <div class="flex flex-col gap-2">
+            <app-input
+              Label="Confirm password"
+              [Type]="'Password'"
+              [ErrorMessage]="'Please enter validate you password !!!'"
+              [FormControlName]="'confirmPassword'"
+              [setError]="true"
+              (change)="isMatch()"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Validation button  -->
+  <button
+    type="submit"
+    class="w-full my-5 py-4 text-center {{
+      this.sercurityInfo.status != 'INVALID'
+        ? 'bg-jetBlue-500 text-white'
+        : 'bg-slate-400 text-jetBlue-400 pointer-events-none cursor-not-allowed'
+    }} bg-jetBlue-500 text-white font-Lexend font-semibold rounded-tl-2xl rounded-br-2xl uppercase text-xl"
+    (click)="validateForm($event)"
+  >
+    Validate
+  </button>
+</form>

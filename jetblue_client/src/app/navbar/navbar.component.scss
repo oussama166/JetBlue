@@ -1,0 +1,162 @@
+/* =========================== Bottom line Selectore style ,transition and animation =========================== */
+.buttonNav {
+  position: relative;
+  margin: 0 !important;
+  cursor: pointer;
+}
+
+/* Left side */
+.buttonNav::before {
+  content: "";
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  width: 0;
+  height: 10px;
+  background: orange left top;
+  transition: width 0.5s ease;
+}
+
+.buttonNav:hover::before,
+#items[aria-active="true"]::before {
+  animation: grow 0.5s forwards;
+}
+
+/* Reverse animation */
+.buttonNav:not(:hover)::before {
+  animation: shrink 0.5s forwards;
+}
+
+/* Right side */
+.buttonNav::after {
+  content: "";
+  position: absolute;
+  top: 50px;
+  right: 50%;
+  width: 0;
+  height: var(--height-grow);
+  background: orange right top;
+  transition: width 0.5s ease; /* Added transition */
+}
+
+.buttonNav:hover::after,
+#items[aria-active="true"]::after {
+  animation: grow 0.5s forwards;
+}
+
+/* Reverse animation */
+.buttonNav:not(:hover)::after {
+  animation: shrink 0.5s forwards; /* Apply the shrink animation */
+}
+
+@keyframes grow {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 50%;
+  }
+}
+
+@keyframes shrink {
+  0% {
+    width: 50%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+
+/* =========================== Arrow style and trasnsitions =========================== */
+
+h1 > span:before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  width: 15px;
+  min-height: 2px;
+  background-color: white;
+  transform: translateX(15px) translateY(10px) rotate(var(--goDownL)); /* Set initial rotation */
+  transition: transform 0.5s ease-in-out;
+}
+
+h1 > span:after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  width: 15px;
+  min-height: 2px;
+  background-color: white;
+  transform: translateX(24px) translateY(10px) rotate(var(--goDownR)); /* Set initial rotation */
+  transition: transform 0.5s ease-in-out;
+}
+
+#items[aria-active="true"] > span:before {
+  animation: goUpL 0.2s ease-in-out forwards; /* Use forwards to keep the final state */
+}
+
+#items[aria-active="false"] > span:after {
+  animation: goDownL 0.2s ease-in-out forwards; /* Use forwards to keep the final state */
+}
+
+#items[aria-active="false"] > span:before {
+  animation: goDownR 0.2s ease-in-out forwards; /* Use forwards to keep the final state */
+}
+
+h1:hover > span:after,
+#items[aria-active="true"] > span:after {
+  animation: goUpR 0.2s ease-in-out forwards; /* Use forwards to keep the final state */
+}
+
+[aria-expanded="false"] {
+  transform: translateY(-103%);
+  transition: transform 0.5s ease-in-out;
+}
+[aria-expanded="true"] {
+  transform: translateY(0);
+  transition: transform 0.5s ease-in-out;
+}
+
+@keyframes goUpR {
+  0% {
+    transform: translateX(24px) translateY(10px) rotate(var(--goDownR)); /* Start from initial position */
+  }
+  100% {
+    transform: translateX(24px) translateY(10px) rotate(50deg); /* Rotate to 50 degrees */
+  }
+}
+
+@keyframes goDownR {
+  0% {
+    transform: translateX(24px) translateY(10px) rotate(50deg); /* Start from initial position */
+  }
+  100% {
+    transform: translateX(24px) translateY(10px) rotate(var(--goDownR)); /* Rotate to 50 degrees */
+  }
+}
+
+@keyframes goUpL {
+  0% {
+    transform: translateX(15px) translateY(10px) rotate(var(--goDownL)); /* Start from initial position */
+  }
+  100% {
+    transform: translateX(15px) translateY(10px) rotate(-50deg); /* Rotate to -50 degrees */
+  }
+}
+
+@keyframes goDownL {
+  0% {
+    transform: translateX(15px) translateY(10px) rotate(-50deg); /* Start from initial position */
+  }
+  100% {
+    transform: translateX(15px) translateY(10px) rotate(var(--goDownL)); /* Rotate to -50 degrees */
+  }
+}
+
+::ng-deep .icon > .icon-plane,
+::ng-deep .icon > * {
+  fill: white !important;
+}
+::marker {
+  color: #0084d4;;
+}

@@ -1,0 +1,74 @@
+/* This the link for Lexend font from google font */
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap");
+
+/* Import the primeNg styles css */
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .sublink {
+    @apply text-xl text-sky-700 font-JBKlarheit font-light tracking-wide hover:text-sky-950 hover:transition-all hover:underline hover:ease-in-out hover:duration-300 cursor-pointer;
+  }
+  .activeStep{
+    @apply ring ring-white ring-offset-4 ring-offset-jetBlue-600 bg-white text-jetBlue-600 font-JBKlarheit font-semibold text-xl;
+  }
+  .disableStep{
+    @apply bg-jetBlue-300 text-jetBlue-600 font-JBKlarheit font-semibold text-xl;
+  }
+  .doneStep{
+    @apply bg-white text-jetBlue-600 font-JBKlarheit font-semibold text-xl;
+  }
+}
+
+/* This is the global styles */
+
+:root {
+  --height-grow: 10px;
+  --origin-left: left;
+  --origin-right: right;
+  --goDownR: -50deg;
+  --goDownL: 50deg;
+  --enable: #2e58b1;
+  --disable: #b1b1b1;
+}
+
+@font-face {
+  font-family: JBKlarheit !important ;
+  src: url("assets/fonts/klarheit-book.woff2") format("woff2") !important;
+  font-weight: 1 400 !important;
+  font-display: swap !important;
+}
+
+@font-face {
+  font-family: JBKlarheit !important;
+  src: url("assets/fonts/klarheit-semi.woff2") format("woff2") !important;
+  font-weight: 500 600 !important;
+  font-display: swap !important;
+}
+
+@font-face {
+  font-family: JBKlarheit !important;
+  src: url("assets/fonts/klarheit-xbold.woff2") format("woff2") !important;
+  font-weight: 700 1000 !important;
+  font-display: swap !important;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+::ng-deep > p-calendar > span > input {
+  display: none;
+}
